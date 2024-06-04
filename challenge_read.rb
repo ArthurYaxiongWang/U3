@@ -4,6 +4,7 @@ number_of_products = Product.count
 
 puts "There are #{number_of_products} in the products table."
 
+###################### READ ######################
 # Find the first product in the products table 
 # and inspect the poroduct object.
 product = Product.first
@@ -21,6 +22,8 @@ specific_product.each { |product| puts product.name }
 # Total number of products with low stock quantity
 low_stock_products = Product.where("stock_quantity < 5")
 puts "Total number of products with low stock quantity: #{low_stock_products.count}"
+
+###################### CREATE ######################
 
 # Creating three new products using different methods
 # Method 1: new and save
@@ -47,6 +50,8 @@ else
   puts "Errors: #{invalid_product.errors.full_messages.join(', ')}"
 end
 
+###################### UPDATE ######################
+
 # Find all products with a stock quantity greater than 40
 # Add one to the stock quantity of each of these products
 high_stock_products = Product.where('stock_quantity > ?', 40)
@@ -56,9 +61,13 @@ high_stock_products.each do |product|
   product.save
 end
 
+###################### DELETE ######################
+
 # Find one of the products created earlier and delete it
 product_to_delete = Product.find_by(name: 'Product 1')
 product_to_delete.destroy if product_to_delete
+
+################### ASSOCIATION ####################
 
 # Find the name of the category associated with one of the products
 category_name = product.category.name
